@@ -27,17 +27,12 @@ public class GoogleSearchTests {
                 .driverManagerEnabled(true)
                 .remote("http://selenoid:4444/wd/hub")
                 .headless(true));
-        try {
-            driver.open("http://google.com");
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        driver.open("http://google.com");
         driver.$(By.name("q")).setValue("Тестовое задание");
         driver.$(By.xpath("//input[@value='Поиск в Google']")).click();
         driver.$(By.id("resultStats")).shouldBe(Condition.visible);
         driver.close();
+
     }
     @BeforeClass
     public static void setUp(){
