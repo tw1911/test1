@@ -28,7 +28,7 @@ public class GoogleSearchTests {
                 .remote("http://selenoid:4444/wd/hub")
                 .headless(true));
         driver.open("http://google.com");
-        driver.$(By.name("q")).setValue("Тестовое задание");
+        driver.$(By.name("q")).setValue("Тест");
         driver.$(By.xpath("//input[@value='Поиск в Google']")).click();
         driver.$(By.id("resultStats")).shouldBe(Condition.visible);
         driver.close();
