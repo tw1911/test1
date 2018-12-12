@@ -25,4 +25,4 @@ services:
     ports:
       - "8080:8080"
     working_dir: /root/test
-    command: ["/root/test/gradlew", "clean", "test", "allureReport", "allureServe"]
+    command: ["/root/test/gradlew", "clean", "test", "allureReport", "allureServe","--continue"]
