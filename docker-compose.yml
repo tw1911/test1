@@ -1,0 +1,28 @@
+version: '3'
+services:
+  selenoid:
+    network_mode: bridge
+    image: aerokube/selenoid
+    volumes:
+      - "/home/tw/docker/SelenTest/config:/etc/selenoid"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    ports:
+      - "4444:4444"
+    logging:
+      driver: none
+    command: ["-timeout","5m0s","-session-attempt-timeout","90s"]
+  selenide_tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: bridge
+    links:
+      - selenoid
+    stdin_open: true
+    tty: true
+    depends_on:
+      - selenoid
+    ports:
+      - "8080:8080"
+    working_dir: /root/test
+    command: ["/root/test/gradlew", "clean", "test", "allureReport", "allureServe"]

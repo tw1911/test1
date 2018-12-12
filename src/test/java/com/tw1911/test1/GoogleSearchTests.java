@@ -16,6 +16,7 @@ public class GoogleSearchTests {
 
     @DataProvider(name = "browser-provider", parallel = true)
     public Object[] provide() throws Exception {
+     //   return new Object[]{"firefox"};
         return new Object[]{"firefox", "chrome"};
 
     }
@@ -25,7 +26,7 @@ public class GoogleSearchTests {
         SelenideDriver driver = new SelenideDriver(new SelenideConfig()
                 .browser(browser)
                 .driverManagerEnabled(true)
-                .remote("http://selenoid:4444/wd/hub")
+                .remote("http://localhost:4444/wd/hub")
                 .headless(true));
         driver.open("http://google.com");
         driver.$(By.name("q")).setValue("Тест");
